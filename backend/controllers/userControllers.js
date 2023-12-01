@@ -7,7 +7,7 @@ const User = require("../models/userModels")
 // @routs POST /api/users
 const registerUser =asyncHandeler(async(req,res)=>{
     const {username,email,password} =req.body;
-    // console.log(req.body,"This is req.body");
+    console.log(req.body,"This is req.body");
     if(! username || !email || !password){
         res.status(400);
         throw new Error("All field manadtory !")

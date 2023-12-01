@@ -1,16 +1,26 @@
 const express = require("express");
 const errorHandeler = require("./middleware/errorHandelr");
 const connectDb= require("./config/dbConnection");
+const cors = require('cors');
 
 const dotenv = require("dotenv").config()
 const app =express();
 const port =process.env.PORT || 5000;
 
+const corsOptions={
+	origin:'http://localhost:3000',
+	methods: "GET,PUT,POST,DELETE",
+};
+app.use(cors(corsOptions));
+
+
 connectDb();
+
+  
 
 app.use(express.json());
 app.use("/api/contacts",require("./routes/contactRoutes"))
-app.use("/api/users",require("./routes/userRoutes"))
+app.use("/",require("./routes/userRoutes"))
 app.use(errorHandeler);
 
 
