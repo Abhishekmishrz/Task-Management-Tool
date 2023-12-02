@@ -7,7 +7,6 @@ const User = require("../models/userModels")
 // @routs POST /api/users
 const registerUser =asyncHandeler(async(req,res)=>{
     const {username,email,password} =req.body;
-    console.log(req.body,"This is req.body");
     if(! username || !email || !password){
         res.status(400);
         throw new Error("All field manadtory !")
@@ -23,13 +22,11 @@ const registerUser =asyncHandeler(async(req,res)=>{
         password: bcrypt.hashSync(password, 10),
     });
     if(user){
-        res.status(201).json({_id:user.id,email:user.email});
+        res.status(201).json({message: "Successfully Registered",_id:user.id,email:user.email});
     }else{
         res.status(400);
         throw new Error("User Data is not valid ")
     }
-    // res.json({message:"Register the user "})
-    
 }) 
 
 // @des login the user 

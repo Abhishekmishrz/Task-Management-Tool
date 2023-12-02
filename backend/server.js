@@ -8,7 +8,7 @@ const app =express();
 const port =process.env.PORT || 5000;
 
 const corsOptions={
-	origin:'http://localhost:3000',
+	origin:`${process.env.REACT_APP_API_BASE_URL}`,
 	methods: "GET,PUT,POST,DELETE",
 };
 app.use(cors(corsOptions));
