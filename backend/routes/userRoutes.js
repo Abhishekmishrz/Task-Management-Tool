@@ -5,9 +5,7 @@ const router = express.Router();
 
 const {registerUser,loginUser,currentUser} = require("../controllers/userControllers")
 
-router.post("/register",registerUser);
-
-router.post("/login",loginUser);
+router.post("/register",registerUser).post("/login",loginUser);
 
 router.get("/current",validationToken,currentUser);
 

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-  const history = useHistory();
+  // const history = useHistory();
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
-  const { username, password } = formData;
+  const { email, password } = formData;
 
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -17,28 +18,29 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/users/login', { username, password });
+      const response = await axios.post('http://localhost:8000/login', { email, password });
       console.log(response.data); // Handle success or redirect to dashboard
-      history.push('/projects');
+      // history.push('/projects');
     } catch (err) {
-      console.error(err.response.data); // Handle errors
+      console.error(err); // Handle errors
     }
   };
 
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={onSubmit}>
+      <form >
         <div>
-          <label>Username</label>
-          <input type="text" name="username" value={username} onChange={onChange} required />
+          <label>Email :</label>
+          <input type="text" name="email" value={email} onChange={onChange} required />
         </div>
         <div>
           <label>Password</label>
           <input type="password" name="password" value={password} onChange={onChange} required />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" onClick={onSubmit}>Login</button>
       </form>
+      <Link to="/register">Don't have an account? Register here</Link>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { authReducer } from '../reducers/authReducer';
+// import { authReducer } from '../reducers/authReducer';
 
 const AuthContext = createContext();
 
@@ -11,14 +11,14 @@ const initialState = {
 };
 
 const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  // const [state, dispatch] = useReducer(authReducer, initialState);
 
   // Implementation for authentication actions
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    // <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}
-    </AuthContext.Provider>
+    // </AuthContext.Provider>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import ProjectList from './components/Project/ProjectList';
@@ -12,22 +13,12 @@ import { TaskProvider } from './context/TaskContext';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <ProjectProvider>
-        <TaskProvider>
-          <Router>
-            <Switch>
-              <Route path="/register" component={Register} />
-              <Route path="/login" component={Login} />
-              <Route path="/projects" component={ProjectList} />
-              <Route path="/projects/new" component={ProjectForm} />
-              <Route path="/tasks" component={TaskList} />
-              <Route path="/tasks/new" component={TaskForm} />
-            </Switch>
-          </Router>
-        </TaskProvider>
-      </ProjectProvider>
-    </AuthProvider>
+        <Router>
+          <Routes>
+              <Route path="/register" element={<Register/>} />
+              <Route path="/login" element={<Login/>} />
+          </Routes>
+        </Router>
   );
 };
 
